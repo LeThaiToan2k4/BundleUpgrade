@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "bundleupgrade",
+  "version": "${version}",
+  "name": "Bundle Upgrade",
+  "description": "Upgrade your vanilla Bundles sequentially through Copper, Iron, Gold, Emerald, and Diamond tiers for expanded storage capacity while keeping your items intact.",
+  "authors": [
+    "thaistoanf"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/bundleupgrade/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.thaistoanf.bundleupgrade.BundleUpgrade"
+    ],
+    "client": [
+      "com.thaistoanf.bundleupgrade.client.BundleUpgradeClient"
+    ]
+  },
+  "mixins": [
+    "bundleupgrade.mixins.json",
+    {
+      "config": "bundleupgrade.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:emerald",
+    "B": "bundleupgrade:gold_bundle"
+  },
+  "pattern": [
+    "###",
+    "#B#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bundleupgrade:emerald_bundle"
+  }
+}

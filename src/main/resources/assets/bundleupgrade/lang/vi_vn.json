@@ -1,0 +1,10 @@
+{
+  "item.bundleupgrade.copper_bundle": "Bundle Đồng",
+  "item.bundleupgrade.iron_bundle": "Bundle Sắt",
+  "item.bundleupgrade.gold_bundle": "Bundle Vàng",
+  "item.bundleupgrade.emerald_bundle": "Bundle Ngọc Lục Bảo",
+  "item.bundleupgrade.diamond_bundle": "Bundle Kim Cương",
+  "tooltip.bundleupgrade.capacity": "%s / %s",
+  "tooltip.bundleupgrade.capacity_units": "%s / %s Đơn vị",
+  "tooltip.bundleupgrade.upgrade_info": "Giữ nguyên 100% vật phẩm khi nâng cấp"
+}

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.thaistoanf.bundleupgrade.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BundleContentsBuilderMixin",
+    "BundleItemMixin",
+    "BundleTooltipDataMixin",
+    "ShapedRecipeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

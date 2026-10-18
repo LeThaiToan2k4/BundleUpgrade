@@ -1,0 +1,10 @@
+{
+  "item.bundleupgrade.copper_bundle": "Copper Bundle",
+  "item.bundleupgrade.iron_bundle": "Iron Bundle",
+  "item.bundleupgrade.gold_bundle": "Gold Bundle",
+  "item.bundleupgrade.emerald_bundle": "Emerald Bundle",
+  "item.bundleupgrade.diamond_bundle": "Diamond Bundle",
+  "tooltip.bundleupgrade.capacity": "%s / %s",
+  "tooltip.bundleupgrade.capacity_units": "%s / %s Units",
+  "tooltip.bundleupgrade.upgrade_info": "Preserves all stored items when upgraded"
+}
