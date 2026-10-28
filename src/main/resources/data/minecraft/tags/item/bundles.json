@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "bundleupgrade:copper_bundle",
+    "bundleupgrade:iron_bundle",
+    "bundleupgrade:gold_bundle",
+    "bundleupgrade:emerald_bundle",
+    "bundleupgrade:diamond_bundle"
+  ]
+}

@@ -2,11 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.thaistoanf.bundleupgrade.client.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "client": [
     "BundleTooltipComponentMixin",
-    "BundleItemClientMixin",
-    "BundleTooltipDataMixin"
+    "TooltipComponentMixin"
   ],
   "injectors": {
     "defaultRequire": 1
