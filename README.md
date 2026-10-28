@@ -4,16 +4,16 @@
 # Bundle Upgrade
 
   <p>
-    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.21.11</strong><br/>
-    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.21.11</em>
+    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.20.4</strong><br/>
+    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.20.4</em>
   </p>
 
   <p>
     <a href="../../actions"><img src="https://img.shields.io/badge/BUILD-PASSING-brightgreen?style=for-the-badge" alt="Build Status"/></a>
     <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.0-blueviolet?style=for-the-badge" alt="Release"/></a>
-    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.21.11-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.21.11"/></a>
-    <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.19.5-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
-    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21"/></a>
+    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.20.4-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.20.4"/></a>
+    <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.20.1-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
+    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-17-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 17"/></a>
   </p>
 
   <p>
@@ -30,7 +30,7 @@
 
 ### Giới Thiệu
 
-**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.21.11. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng ➔ Sắt ➔ Vàng ➔ Ngọc Lục Bảo ➔ Kim Cương**.
+**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.20.4. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng ➔ Sắt ➔ Vàng ➔ Ngọc Lục Bảo ➔ Kim Cương**.
 
 > [!IMPORTANT]
 > **Giữ nguyên 100% vật phẩm khi nâng cấp:** Khi đưa túi Bundle đang chứa đầy vật phẩm vào Bàn Chế Tạo (Crafting Table) cùng nguyên liệu nâng cấp, chiếc túi mới tạo ra sẽ giữ nguyên toàn bộ vật phẩm bên trong cũng như tên tùy chỉnh (Custom Name từ Đe). Bạn không bao giờ phải đổ đồ ra ngoài khi nâng cấp!
@@ -54,7 +54,7 @@ Tất cả công thức đều thực hiện trên **Bàn Chế Tạo 3x3**: Đ�
 
 ### Hướng Dẫn Sử Dụng & Cơ Chế Hoạt Động
 
-#### 1. Thao Tác Cất & Lấy Đồ (Giữ Nguyên Thao Tác 1.21.11 Vanilla)
+#### 1. Thao Tác Cất & Lấy Đồ (Giữ Nguyên Thao Tác 1.20.4 Vanilla)
 
 - **Cất vật phẩm vào túi:** Cầm vật phẩm trên con trỏ chuột và nhấn chuột phải vào túi Bundle, hoặc cầm túi Bundle rồi quét chuột phải qua các ô vật phẩm trong hòm đồ.
 - **Lấy vật phẩm ra:** Nhấp chuột phải vào túi để lấy món đồ được chọn ra ngoài.
@@ -81,14 +81,14 @@ Sức chứa của Bundle tính theo đơn vị trọng lượng chuẩn:
 
 #### Cài Đặt Để Chơi Game
 
-1. Cài đặt **Minecraft 1.21.11**.
-2. Cài đặt **Fabric Loader 0.19.5** trở lên.
-3. Tải **Fabric API** phù hợp với phiên bản 1.21.11.
+1. Cài đặt **Minecraft 1.20.4**.
+2. Cài đặt **Fabric Loader 0.20.1** trở lên.
+3. Tải **Fabric API** phù hợp với phiên bản 1.20.4.
 4. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
 
 #### Tự Biên Dịch Từ Mã Nguồn (Build from Source)
 
-Yêu cầu hệ thống đã cài đặt **Java 21 (JDK 21)**:
+Yêu cầu hệ thống đã cài đặt **Java 17 (JDK 17)**:
 
 ```bash
 # Clone dự án
@@ -107,10 +107,10 @@ File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/li
 
 ### Overview
 
-**Bundle Upgrade** expands the storage capabilities of Minecraft 1.21.11 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper ➔ Iron ➔ Gold ➔ Emerald ➔ Diamond**.
+**Bundle Upgrade** expands the storage capabilities of Minecraft 1.20.4 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper ➔ Iron ➔ Gold ➔ Emerald ➔ Diamond**.
 
 > [!IMPORTANT]
-> **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents (`BUNDLE_CONTENTS`) and custom anvil names (`CUSTOM_NAME`) directly to the newly crafted tier. You never have to empty your bundle before upgrading!
+> **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents and custom anvil names directly to the newly crafted tier. You never have to empty your bundle before upgrading!
 
 ---
 
@@ -131,7 +131,7 @@ All recipes use a **3x3 Crafting Table**: Place the **previous tier bundle in ce
 
 ### How to Use & Mechanics
 
-#### 1. Item Insertion & Extraction (Vanilla 1.21.11 Interactions)
+#### 1. Item Insertion & Extraction (Vanilla 1.20.4 Interactions)
 
 - **Inserting Items:** Pick up items with your cursor and right-click them into the bundle, or pick up the bundle and right-click across inventory slots.
 - **Extracting Items:** Right-click the bundle to retrieve the highlighted item.
@@ -158,14 +158,15 @@ Occupancy is calculated using standard base-64 fractions:
 
 #### Playing the Mod
 
-1. Install **Minecraft 1.21.11**.
-2. Install **Fabric Loader 0.19.5** or newer.
-3. Install the matching **Fabric API** for 1.21.11.
+1. Install **Minecraft 1.20.4**.
+2. Install **Fabric Loader 0.20.1** or newer.
+3. Install the matching **Fabric API** for 1.20.4.
+4. In Minecraft 1.20.4 the vanilla Bundle is an experimental feature: enable the **Bundle** experiment when creating the world.
 4. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
 
 #### Compiling from Source
 
-Requires **Java 21 (JDK 21)** installed on your machine:
+Requires **Java 17 (JDK 17)** installed on your machine:
 
 ```bash
 # Clone the repository
