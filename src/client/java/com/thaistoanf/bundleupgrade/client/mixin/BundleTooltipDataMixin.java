@@ -1,10 +1,13 @@
-package com.thaistoanf.bundleupgrade.mixin;
+package com.thaistoanf.bundleupgrade.client.mixin;
 
-import com.thaistoanf.bundleupgrade.duck.UpgradedBundleDataHolder;
-import net.minecraft.item.tooltip.BundleTooltipData;
+import com.thaistoanf.bundleupgrade.client.duck.UpgradedBundleDataHolder;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.BundleTooltipData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
+@Environment(EnvType.CLIENT)
 @Mixin(BundleTooltipData.class)
 public class BundleTooltipDataMixin implements UpgradedBundleDataHolder {
     @Unique
@@ -20,3 +23,4 @@ public class BundleTooltipDataMixin implements UpgradedBundleDataHolder {
         this.bundleupgrade$maxCapacity = maxCapacity;
     }
 }
+

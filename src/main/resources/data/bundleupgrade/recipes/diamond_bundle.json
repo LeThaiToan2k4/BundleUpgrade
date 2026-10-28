@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "minecraft:gold_ingot",
-    "B": "bundleupgrade:iron_bundle"
+    "#": "minecraft:diamond",
+    "B": "bundleupgrade:emerald_bundle"
   },
   "pattern": [
     "###",
@@ -12,6 +12,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "bundleupgrade:gold_bundle"
+    "item": "bundleupgrade:diamond_bundle"
   }
 }
