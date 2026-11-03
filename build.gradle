@@ -7,7 +7,8 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+    // Produces build/libs/bundleupgrade-fabric-<minecraft_version>-<mod_version>.jar
+    archivesName = "${project.archives_base_name}-fabric-${project.minecraft_version}"
 }
 
 repositories {
