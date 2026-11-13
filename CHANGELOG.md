@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] (Minecraft 1.20.5 - Fabric)
+## [1.0.0] (Minecraft 1.20.6 - Fabric)
 
 ### Fixed
 
@@ -9,13 +9,12 @@
 
 ### Changed
 
-- Ported **Bundle Upgrade** to Minecraft `1.20.5` (`DataComponentTypes.BUNDLE_CONTENTS`, `BundleContentsComponent`, and `Fraction` weight calculations) on Java 21.
-- Preserved Vanilla 1.20.5 bundle mouse controls (`ClickType.RIGHT` to insert and extract) and improved holding Right-Click while dragging a bundle across empty inventory slots so each empty slot smoothly receives 1 extracted stack (`<= 64`).
-- Standardized output artifact naming to `bundleupgrade-fabric-1.20.5-1.0.1.jar`.
+- Upgraded **Bundle Upgrade** to Minecraft `1.20.6` (`yarn_mappings=1.20.6+build.3`, `fabric-api=0.100.8+1.20.6`, `fabric-loader=0.20.1`) on Java 21 (`DataComponentTypes.BUNDLE_CONTENTS`, `BundleContentsComponent`, and `Fraction` weight calculations).
+- Preserved Vanilla 1.20.6 bundle mouse controls (`ClickType.RIGHT` to insert and extract) and improved holding Right-Click while dragging a bundle across empty inventory slots so each empty slot smoothly receives 1 extracted stack (`<= 64`).
+- Standardized output artifact naming to `bundleupgrade-fabric-1.20.6-1.0.0.jar`.
 
-## 1.0.0 (Minecraft 1.20.5 - Fabric)
+### Features
 
-- Initial release of **Bundle Upgrade** (`bundleupgrade`) by `thaistoanf`.
 - Added 5 sequential bundle tiers with cumulative capacity expansion:
   - Copper Bundle (+10 -> 74 units)
   - Iron Bundle (+20 -> 94 units)
@@ -29,3 +28,18 @@
 - 3x3 shaped crafting recipes with automatic preservation of stored items (`BUNDLE_CONTENTS`) and custom name (`CUSTOM_NAME`).
 - Procedural pixel-art textures (closed bundle) and custom 128x128 mod icon.
 - Bilingual localization in English (`en_us.json`) and Vietnamese (`vi_vn.json`).
+
+---
+
+## [1.0.0] (Minecraft 1.20.5 - Fabric)
+
+### Fixed
+
+- Fixed an item overflow / serialization bug when storing more than 64 identical items in an upgraded bundle. Identical items inside `BundleContentsComponent` are now only merged into existing partial stacks up to `stack.getMaxCount()` (64), and any remaining count is automatically split into separate standard-sized `ItemStack` entries (`1 <= count <= 64`).
+- Legacy or decoded `BundleContentsComponent` instances containing oversized stacks (`count > 64`) are automatically split into standard-sized stacks on load and builder initialization.
+
+### Changed
+
+- Ported **Bundle Upgrade** to Minecraft `1.20.5` (`DataComponentTypes.BUNDLE_CONTENTS`, `BundleContentsComponent`, and `Fraction` weight calculations) on Java 21.
+- Preserved Vanilla 1.20.5 bundle mouse controls (`ClickType.RIGHT` to insert and extract) and improved holding Right-Click while dragging a bundle across empty inventory slots so each empty slot smoothly receives 1 extracted stack (`<= 64`).
+- Standardized output artifact naming to `bundleupgrade-fabric-1.20.5-1.0.0.jar`.
