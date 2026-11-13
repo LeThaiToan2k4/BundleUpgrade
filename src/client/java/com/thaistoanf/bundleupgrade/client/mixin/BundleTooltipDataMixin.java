@@ -3,7 +3,7 @@ package com.thaistoanf.bundleupgrade.client.mixin;
 import com.thaistoanf.bundleupgrade.client.duck.UpgradedBundleDataHolder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.item.BundleTooltipData;
+import net.minecraft.item.tooltip.BundleTooltipData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 

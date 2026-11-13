@@ -21,7 +21,7 @@ public final class ModItems {
     private ModItems() {}
 
     private static Item register(String name, int capacity) {
-        Identifier id = new Identifier(BundleUpgrade.MOD_ID, name);
+        Identifier id = Identifier.of(BundleUpgrade.MOD_ID, name);
         Item.Settings settings = new Item.Settings()
                 .maxCount(1)
                 .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
