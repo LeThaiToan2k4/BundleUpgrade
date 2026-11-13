@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "minecraft:diamond",
-    "B": "bundleupgrade:emerald_bundle"
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "bundleupgrade:emerald_bundle"
+    }
   },
   "pattern": [
     "###",
@@ -12,6 +16,6 @@
   ],
   "result": {
     "count": 1,
-    "item": "bundleupgrade:diamond_bundle"
+    "id": "bundleupgrade:diamond_bundle"
   }
 }

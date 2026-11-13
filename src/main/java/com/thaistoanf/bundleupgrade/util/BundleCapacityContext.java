@@ -2,6 +2,7 @@ package com.thaistoanf.bundleupgrade.util;
 
 import com.thaistoanf.bundleupgrade.item.UpgradedBundleItem;
 import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.math.Fraction;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -33,5 +34,10 @@ public final class BundleCapacityContext {
     public static int getCurrentMaxCapacity() {
         Deque<Integer> deque = CONTEXT_STACK.get();
         return deque.isEmpty() ? VANILLA_CAPACITY : deque.peek();
+    }
+
+    public static Fraction getCurrentMaxFraction() {
+        Deque<Integer> deque = CONTEXT_STACK.get();
+        return deque.isEmpty() ? null : Fraction.getFraction(deque.peek(), VANILLA_CAPACITY);
     }
 }

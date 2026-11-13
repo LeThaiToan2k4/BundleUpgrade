@@ -1,9 +1,10 @@
 package com.thaistoanf.bundleupgrade.client.mixin;
 
-import com.thaistoanf.bundleupgrade.mixin.BundleItemInvoker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
@@ -22,15 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Enables holding Right-Click and dragging a bundle on the cursor across inventory slots in 1.20.4:
- * <ul>
- *     <li>When the drag starts over an empty slot, dragging across empty slots extracts 1 stack from
- *     the bundle into each empty slot via {@link BundleItem#onStackClicked}.</li>
- *     <li>When the drag starts over a non-empty slot, dragging across non-empty slots inserts items
- *     from each slot into the bundle.</li>
- * </ul>
- */
 @Environment(EnvType.CLIENT)
 @Mixin(HandledScreen.class)
 public abstract class HandledScreenMixin {
@@ -142,7 +134,8 @@ public abstract class HandledScreenMixin {
         }
 
         if (this.bundleupgrade$extractMode) {
-            if (slot.hasStack() || BundleItemInvoker.bundleupgrade$getBundleOccupancy(bundle) <= 0) {
+            BundleContentsComponent contents = bundle.get(DataComponentTypes.BUNDLE_CONTENTS);
+            if (slot.hasStack() || contents == null || contents.isEmpty()) {
                 return;
             }
             if (!this.handler.canInsertIntoSlot(slot)) {
@@ -167,7 +160,6 @@ public abstract class HandledScreenMixin {
 
     @Unique
     private static boolean bundleupgrade$isBundle(ItemStack stack) {
-        return !stack.isEmpty() && stack.getItem() instanceof BundleItem;
+        return !stack.isEmpty() && stack.getItem() instanceof BundleItem && stack.contains(DataComponentTypes.BUNDLE_CONTENTS);
     }
 }
-

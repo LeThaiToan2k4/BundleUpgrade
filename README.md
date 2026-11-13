@@ -4,16 +4,16 @@
 # Bundle Upgrade
 
   <p>
-    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.20.4</strong><br/>
-    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.20.4</em>
+    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.20.5</strong><br/>
+    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.20.5</em>
   </p>
 
   <p>
     <a href="../../actions"><img src="https://img.shields.io/badge/BUILD-PASSING-brightgreen?style=for-the-badge" alt="Build Status"/></a>
     <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.1-blueviolet?style=for-the-badge" alt="Release"/></a>
-    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.20.4-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.20.4"/></a>
+    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.20.5-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.20.5"/></a>
     <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.20.1-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
-    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-17-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 17"/></a>
+    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21"/></a>
   </p>
 
   <p>
@@ -30,16 +30,17 @@
 
 ### Giới Thiệu
 
-**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.20.4. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
+**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.20.5. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
 
 | Thông tin                      | Giá trị                               |
 | :----------------------------- | :------------------------------------ |
-| **Phiên bản mod hiện tại**     | `1.0.1`                               |
-| **Phiên bản Minecraft hỗ trợ** | `1.20.4`                              |
+| **Phiên bản mod hiện tại**     | `1.0.0`                               |
+| **Phiên bản Minecraft hỗ trợ** | `1.20.5`                              |
 | **Mod Loader**                 | Fabric Loader `0.20.1+` và Fabric API |
+| **Yêu cầu Java**               | Java 21 (`JDK 21`)                    |
 
 > [!IMPORTANT]
-> **Giữ nguyên 100% vật phẩm khi nâng cấp:** Khi đưa túi Bundle đang chứa đầy vật phẩm vào Bàn Chế Tạo (Crafting Table) cùng nguyên liệu nâng cấp, chiếc túi mới tạo ra sẽ giữ nguyên toàn bộ vật phẩm bên trong cũng như tên tùy chỉnh (Custom Name từ Đe). Bạn không bao giờ phải đổ đồ ra ngoài khi nâng cấp!
+> **Giữ nguyên 100% vật phẩm khi nâng cấp:** Khi đưa túi Bundle đang chứa đầy vật phẩm vào Bàn Chế Tạo (Crafting Table) cùng nguyên liệu nâng cấp, chiếc túi mới tạo ra sẽ giữ nguyên toàn bộ vật phẩm bên trong (`BUNDLE_CONTENTS`) cũng như tên tùy chỉnh (`CUSTOM_NAME` từ Đe). Bạn không bao giờ phải đổ đồ ra ngoài khi nâng cấp!
 
 ---
 
@@ -60,15 +61,15 @@ Tất cả công thức đều thực hiện trên **Bàn Chế Tạo 3x3**: Đ�
 
 ### Hướng Dẫn Sử Dụng & Cơ Chế Hoạt Động
 
-#### 1. Thao Tác Cất & Lấy Đồ (Chuẩn Vanilla 1.20.4)
+#### 1. Thao Tác Cất & Lấy Đồ (Chuẩn Vanilla 1.20.5)
 
-| Thao tác                                    | Cách thực hiện                                                                                                                                         |
-| :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Cất vật phẩm (Chuột phải)**               | Cầm vật phẩm trên con trỏ rồi **nhấp chuột phải** vào túi Bundle, hoặc cầm túi Bundle trên con trỏ rồi **nhấp/kéo chuột phải** qua các ô chứa vật phẩm. |
-| **Lấy vật phẩm ra (Chuột phải)**            | Để trống con trỏ và **nhấp chuột phải** vào túi Bundle để lấy 1 stack đầu tiên ra ngoài.                                                               |
-| **Đặt vào ô trống (Chuột phải)**            | Cầm túi Bundle trên con trỏ và **nhấp chuột phải** vào một ô trống để đặt 1 stack từ túi vào ô đó.                                                     |
-| **Rải đồ ra nhiều ô (Giữ chuột phải + kéo)** | Cầm túi Bundle trên con trỏ, **giữ chuột phải và kéo** qua các ô trống: mỗi ô trống đi qua sẽ nhận 1 stack từ túi.                                     |
-| **Đổ đồ ra thế giới (Chuột phải ngoài hòm đồ)** | Cầm túi trên tay và **nhấp chuột phải** để thả toàn bộ các stack bên trong ra thế giới.                                                            |
+| Thao tác                                        | Cách thực hiện                                                                                                                                          |
+| :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Cất vật phẩm (Chuột phải)**                   | Cầm vật phẩm trên con trỏ rồi **nhấp chuột phải** vào túi Bundle, hoặc cầm túi Bundle trên con trỏ rồi **nhấp/kéo chuột phải** qua các ô chứa vật phẩm. |
+| **Lấy vật phẩm ra (Chuột phải)**                | Để trống con trỏ và **nhấp chuột phải** vào túi Bundle để lấy 1 stack đầu tiên ra ngoài.                                                                |
+| **Đặt vào ô trống (Chuột phải)**                | Cầm túi Bundle trên con trỏ và **nhấp chuột phải** vào một ô trống để đặt 1 stack từ túi vào ô đó.                                                      |
+| **Rải đồ ra nhiều ô (Giữ chuột phải + kéo)**    | Cầm túi Bundle trên con trỏ, **giữ chuột phải và kéo** qua các ô trống: mỗi ô trống đi qua sẽ nhận 1 stack từ túi.                                      |
+| **Đổ đồ ra thế giới (Chuột phải ngoài hòm đồ)** | Cầm túi trên tay và **nhấp chuột phải** để thả toàn bộ các stack bên trong ra thế giới.                                                                 |
 
 #### 2. Quy Tắc Trọng Lượng (Hệ Thống Base-64)
 
@@ -80,9 +81,9 @@ Sức chứa của Bundle tính theo đơn vị trọng lượng chuẩn:
   > [!TIP]
   > Nhờ các bậc túi nâng cấp mở rộng từ **74 đến 214 đơn vị**, bạn hoàn toàn có thể bỏ cả 1 cây kiếm hay 1 chiếc cúp (64 đơn vị) vào trong túi mà vẫn còn thừa từ 10 đến 150 đơn vị cho các vật phẩm khác!
 
-#### 3. Tự Động Chia Stack Trong NBT (Từ 1.0.1)
+#### 3. Tự Động Chia Stack (Từ 1.0.1)
 
-Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundle Kim Cương), túi sẽ tự động chia thành nhiều stack chuẩn (`64 + 64 + 64 + 8`) trong danh sách NBT `"Items"` thay vì gộp thành 1 stack vượt quá 64. Mỗi lần lấy ra luôn chỉ nhận tối đa 1 stack chuẩn.
+Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundle Kim Cương), túi sẽ tự động chia thành nhiều stack chuẩn (`64 + 64 + 64 + 8`) trong `BundleContentsComponent` thay vì gộp thành 1 stack vượt quá giới hạn codec. Mỗi lần lấy ra luôn chỉ nhận tối đa 1 stack chuẩn.
 
 #### 4. Thanh Hiển Thị & Chú Giải (UI & Tooltip)
 
@@ -95,15 +96,15 @@ Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundl
 
 #### Cài Đặt Để Chơi Game
 
-1. Cài đặt **Minecraft 1.20.4**.
+1. Cài đặt **Minecraft 1.20.5**.
 2. Cài đặt **Fabric Loader 0.20.1** trở lên.
-3. Tải **Fabric API** phù hợp với phiên bản 1.20.4.
-4. Trong Minecraft 1.20.4, túi Bundle mặc định nằm trong mục **Experiments**: hãy bật **Bundle** khi tạo thế giới mới.
+3. Tải **Fabric API** phù hợp với phiên bản 1.20.5.
+4. Trong Minecraft 1.20.5, túi Bundle mặc định nằm trong mục **Experiments**: hãy bật **Bundle** khi tạo thế giới mới.
 5. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
 
 #### Tự Biên Dịch Từ Mã Nguồn (Build from Source)
 
-Yêu cầu hệ thống đã cài đặt **Java 17 (JDK 17)**:
+Yêu cầu hệ thống đã cài đặt **Java 21 (JDK 21)**:
 
 ```bash
 # Clone dự án
@@ -114,7 +115,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.20.4-1.0.1.jar`.
+File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.20.5-1.0.1.jar`.
 
 ---
 
@@ -122,16 +123,17 @@ File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/li
 
 ### Overview
 
-**Bundle Upgrade** expands the storage capabilities of Minecraft 1.20.4 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
+**Bundle Upgrade** expands the storage capabilities of Minecraft 1.20.5 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
 
 | Info                             | Value                                   |
 | :------------------------------- | :-------------------------------------- |
 | **Current mod version**          | `1.0.1`                                 |
-| **Supported Minecraft versions** | `1.20.4`                                |
+| **Supported Minecraft versions** | `1.20.5`                                |
 | **Mod loader**                   | Fabric Loader `0.20.1+` with Fabric API |
+| **Java requirement**             | Java 21 (`JDK 21`)                      |
 
 > [!IMPORTANT]
-> **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents and custom anvil names directly to the newly crafted tier. You never have to empty your bundle before upgrading!
+> **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents (`BUNDLE_CONTENTS`) and custom anvil names (`CUSTOM_NAME`) directly to the newly crafted tier. You never have to empty your bundle before upgrading!
 
 ---
 
@@ -152,19 +154,19 @@ All recipes use a **3x3 Crafting Table**: Place the **previous tier bundle in ce
 
 ### How to Use & Mechanics
 
-#### 1. Controls (Vanilla 1.20.4 Bundle Mechanics)
+#### 1. Controls (Vanilla 1.20.5 Bundle Mechanics)
 
-| Action                                     | How                                                                                                                                             |
-| :----------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Insert (Right-Click)**                   | Hold an item on your cursor and **right-click** the bundle, or hold the bundle on your cursor and **right-click / drag** across item slots.    |
-| **Extract (Right-Click)**                  | With an empty cursor, **right-click** the bundle to take out one stack.                                                                         |
-| **Place into an empty slot (Right-Click)** | Hold the bundle on your cursor and **right-click** an empty slot to place one stack from the bundle into it.                                   |
-| **Distribute (Right-Click & Drag)**        | Hold the bundle on your cursor, then **hold right-click and drag** across empty slots: each empty slot receives one stack from the bundle.     |
-| **Empty into the world (Use)**             | Hold the bundle in your hand and **right-click** in the world to drop all stored stacks at once.                                                |
+| Action                                     | How                                                                                                                                         |
+| :----------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Insert (Right-Click)**                   | Hold an item on your cursor and **right-click** the bundle, or hold the bundle on your cursor and **right-click / drag** across item slots. |
+| **Extract (Right-Click)**                  | With an empty cursor, **right-click** the bundle to take out one stack.                                                                     |
+| **Place into an empty slot (Right-Click)** | Hold the bundle on your cursor and **right-click** an empty slot to place one stack from the bundle into it.                                |
+| **Distribute (Right-Click & Drag)**        | Hold the bundle on your cursor, then **hold right-click and drag** across empty slots: each empty slot receives one stack from the bundle.  |
+| **Empty into the world (Use)**             | Hold the bundle in your hand and **right-click** in the world to drop all stored stacks at once.                                            |
 
 #### 2. Capacity Weight Rules (Base-64 Unit System)
 
-Occupancy is calculated using standard base-64 weights:
+Occupancy is calculated using standard base-64 fractions:
 
 - **Stack size 64 items** (building blocks, minerals, seeds...): **1 unit / item** (`1/64` weight).
 - **Stack size 16 items** (ender pearls, snowballs, empty buckets...): **4 units / item** (`4/64` weight).
@@ -172,9 +174,9 @@ Occupancy is calculated using standard base-64 weights:
   > [!TIP]
   > Since upgraded bundles feature capacities from **74 to 214 units**, you can store unstackable gear (such as a sword or pickaxe, taking 64 units) while still having 10 to 150 units of remaining space for other items!
 
-#### 3. Automatic NBT Stack Splitting (Since 1.0.1)
+#### 3. Automatic Stack Splitting (Since 1.0.1)
 
-When you store more than 64 identical items (for example 200 stone in a Diamond Bundle), the bundle automatically splits them across multiple standard stacks (`64 + 64 + 64 + 8`) inside its `"Items"` NBT list instead of merging into a single oversized stack. Every extraction returns at most one standard stack (`<= 64`).
+When you store more than 64 identical items (for example 200 stone in a Diamond Bundle), the bundle automatically splits them across multiple standard stacks (`64 + 64 + 64 + 8`) inside `BundleContentsComponent` instead of merging into a single oversized stack. Every extraction returns at most one standard stack (`<= 64`).
 
 #### 4. Fullness Bar & Dynamic Tooltips
 
@@ -187,15 +189,15 @@ When you store more than 64 identical items (for example 200 stone in a Diamond 
 
 #### Playing the Mod
 
-1. Install **Minecraft 1.20.4**.
+1. Install **Minecraft 1.20.5**.
 2. Install **Fabric Loader 0.20.1** or newer.
-3. Install the matching **Fabric API** for 1.20.4.
-4. In Minecraft 1.20.4, the vanilla Bundle is an experimental feature: enable the **Bundle** experiment when creating a world.
+3. Install the matching **Fabric API** for 1.20.5.
+4. In Minecraft 1.20.5, the vanilla Bundle is an experimental feature: enable the **Bundle** experiment when creating a world.
 5. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
 
 #### Compiling from Source
 
-Requires **Java 17 (JDK 17)** installed on your machine:
+Requires **Java 21 (JDK 21)** installed on your machine:
 
 ```bash
 # Clone the repository
@@ -206,7 +208,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.20.4-1.0.1.jar`.
+The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.20.5-1.0.1.jar`.
 
 ---
 

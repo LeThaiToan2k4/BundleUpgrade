@@ -2,6 +2,8 @@ package com.thaistoanf.bundleupgrade.item;
 
 import com.thaistoanf.bundleupgrade.BundleUpgrade;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -20,7 +22,9 @@ public final class ModItems {
 
     private static Item register(String name, int capacity) {
         Identifier id = new Identifier(BundleUpgrade.MOD_ID, name);
-        Item.Settings settings = new Item.Settings().maxCount(1);
+        Item.Settings settings = new Item.Settings()
+                .maxCount(1)
+                .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
         UpgradedBundleItem item = new UpgradedBundleItem(capacity, settings);
         return Registry.register(Registries.ITEM, id, item);
     }
