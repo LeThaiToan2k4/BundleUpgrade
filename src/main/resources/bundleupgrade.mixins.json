@@ -8,6 +8,7 @@
     "BundleContentsComponentAccessor",
     "BundleContentsComponentMixin",
     "BundleItemMixin",
+    "BundleTooltipDataMixin",
     "ShapedRecipeMixin"
   ],
   "injectors": {

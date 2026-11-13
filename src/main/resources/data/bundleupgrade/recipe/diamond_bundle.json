@@ -1,13 +1,9 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:diamond"
-    },
-    "B": {
-      "item": "bundleupgrade:emerald_bundle"
-    }
+    "#": "minecraft:diamond",
+    "B": "bundleupgrade:emerald_bundle"
   },
   "pattern": [
     "###",

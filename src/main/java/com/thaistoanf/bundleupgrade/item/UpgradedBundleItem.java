@@ -1,32 +1,37 @@
 package com.thaistoanf.bundleupgrade.item;
 
+import com.thaistoanf.bundleupgrade.duck.UpgradedBundleDataHolder;
 import com.thaistoanf.bundleupgrade.util.BundleCapacityContext;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BundleContentsComponent;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.TooltipData;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
 import net.minecraft.util.ClickType;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.math.Fraction;
 
-import java.util.List;
+import java.util.Optional;
 
 public class UpgradedBundleItem extends BundleItem {
-    private static final int FULL_ITEM_BAR_COLOR = MathHelper.packRgb(1.0F, 0.33F, 0.33F);
-    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.44F, 0.53F, 1.0F);
+    private static final int FULL_ITEM_BAR_COLOR = ColorHelper.fromFloats(1.0F, 1.0F, 0.33F, 0.33F);
+    private static final int ITEM_BAR_COLOR = ColorHelper.fromFloats(1.0F, 0.44F, 0.53F, 1.0F);
+    private static final int VANILLA_MAX_USE_TIME = 200;
 
     private final int maxCapacity;
+    private final int maxUseTime;
 
-    public UpgradedBundleItem(int maxCapacity, Item.Settings settings) {
-        super(settings);
+    public UpgradedBundleItem(int maxCapacity, Identifier openFrontTexture, Identifier openBackTexture, Item.Settings settings) {
+        super(openFrontTexture, openBackTexture, settings);
         this.maxCapacity = maxCapacity;
+        this.maxUseTime = Math.max(VANILLA_MAX_USE_TIME, 10 + 2 * maxCapacity + 2);
     }
 
     public int getMaxCapacity() {
@@ -54,32 +59,39 @@ public class UpgradedBundleItem extends BundleItem {
     }
 
     @Override
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        return this.maxUseTime;
+    }
+
+    @Override
     public boolean isItemBarVisible(ItemStack stack) {
-        BundleContentsComponent contents = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        return contents.getOccupancy().compareTo(Fraction.ZERO) > 0;
+        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
+        return bundleContentsComponent.getOccupancy().compareTo(Fraction.ZERO) > 0;
     }
 
     @Override
     public int getItemBarStep(ItemStack stack) {
-        BundleContentsComponent contents = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
+        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
         Fraction maxFraction = Fraction.getFraction(this.maxCapacity, 64);
-        Fraction ratio = contents.getOccupancy().divideBy(maxFraction);
+        Fraction ratio = bundleContentsComponent.getOccupancy().divideBy(maxFraction);
         return Math.min(1 + MathHelper.multiplyFraction(ratio, 12), 13);
     }
 
     @Override
     public int getItemBarColor(ItemStack stack) {
-        BundleContentsComponent contents = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
+        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
         Fraction maxFraction = Fraction.getFraction(this.maxCapacity, 64);
-        return contents.getOccupancy().compareTo(maxFraction) >= 0 ? FULL_ITEM_BAR_COLOR : ITEM_BAR_COLOR;
+        return bundleContentsComponent.getOccupancy().compareTo(maxFraction) >= 0 ? FULL_ITEM_BAR_COLOR : ITEM_BAR_COLOR;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-        BundleContentsComponent contents = stack.get(DataComponentTypes.BUNDLE_CONTENTS);
-        if (contents != null) {
-            int currentUnits = MathHelper.multiplyFraction(contents.getOccupancy(), 64);
-            tooltip.add(Text.translatable("item.minecraft.bundle.fullness", currentUnits, this.maxCapacity).formatted(Formatting.GRAY));
-        }
+    public Optional<TooltipData> getTooltipData(ItemStack stack) {
+        Optional<TooltipData> opt = super.getTooltipData(stack);
+        opt.ifPresent(data -> {
+            if (data instanceof UpgradedBundleDataHolder holder) {
+                holder.bundleupgrade$setMaxCapacity(this.maxCapacity);
+            }
+        });
+        return opt;
     }
 }

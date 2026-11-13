@@ -1,0 +1,6 @@
+﻿{
+  "parent": "minecraft:item/bundle",
+  "textures": {
+    "layer0": "bundleupgrade:item/diamond_bundle_open_back"
+  }
+}

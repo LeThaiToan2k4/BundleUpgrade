@@ -28,6 +28,9 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
     private Fraction occupancy;
 
     @Shadow
+    private int selectedStackIndex;
+
+    @Shadow
     private int getMaxAllowed(ItemStack stack) {
         throw new AssertionError();
     }
@@ -46,6 +49,7 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
         if (normalized != this.stacks) {
             this.stacks.clear();
             this.stacks.addAll(normalized);
+            this.selectedStackIndex = -1;
         }
     }
 
@@ -63,8 +67,7 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
         method = "getMaxAllowed",
         at = @At(
             value = "FIELD",
-            target = "Lorg/apache/commons/lang3/math/Fraction;ONE:Lorg/apache/commons/lang3/math/Fraction;",
-            remap = false
+            target = "Lorg/apache/commons/lang3/math/Fraction;ONE:Lorg/apache/commons/lang3/math/Fraction;"
         )
     )
     private Fraction bundleupgrade$redirectMaxOccupancy() {
@@ -80,7 +83,7 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
 
     @Inject(method = "add(Lnet/minecraft/item/ItemStack;)I", at = @At("HEAD"), cancellable = true)
     private void bundleupgrade$addRespectingMaxStackSize(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        if (stack.isEmpty() || !stack.getItem().canBeNested()) {
+        if (!BundleContentsComponent.canBeBundled(stack)) {
             cir.setReturnValue(0);
             return;
         }
@@ -125,4 +128,3 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
         cir.setReturnValue(toInsert);
     }
 }
-

@@ -9,6 +9,8 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public final class ModItems {
@@ -22,11 +24,18 @@ public final class ModItems {
 
     private static Item register(String name, int capacity) {
         Identifier id = Identifier.of(BundleUpgrade.MOD_ID, name);
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
         Item.Settings settings = new Item.Settings()
+                .registryKey(key)
                 .maxCount(1)
                 .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        UpgradedBundleItem item = new UpgradedBundleItem(capacity, settings);
-        return Registry.register(Registries.ITEM, id, item);
+        UpgradedBundleItem item = new UpgradedBundleItem(
+                capacity,
+                Identifier.of(BundleUpgrade.MOD_ID, name + "_open_front"),
+                Identifier.of(BundleUpgrade.MOD_ID, name + "_open_back"),
+                settings
+        );
+        return Registry.register(Registries.ITEM, key, item);
     }
 
     public static void registerModItems() {

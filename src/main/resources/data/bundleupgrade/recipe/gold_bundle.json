@@ -1,13 +1,9 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:gold_ingot"
-    },
-    "B": {
-      "item": "bundleupgrade:iron_bundle"
-    }
+    "#": "minecraft:gold_ingot",
+    "B": "bundleupgrade:iron_bundle"
   },
   "pattern": [
     "###",

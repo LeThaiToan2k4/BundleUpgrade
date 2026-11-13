@@ -39,7 +39,7 @@ public abstract class HandledScreenMixin {
     private int heldButtonCode;
 
     @Shadow
-    private @Nullable Slot getSlotAt(double x, double y) {
+    private @Nullable Slot getSlotAt(double mouseX, double mouseY) {
         throw new AssertionError();
     }
 
@@ -56,9 +56,6 @@ public abstract class HandledScreenMixin {
     private boolean bundleupgrade$bundleDragArmed;
 
     @Unique
-    private boolean bundleupgrade$extractMode;
-
-    @Unique
     private @Nullable Slot bundleupgrade$bundleDragStartSlot;
 
     @Inject(method = "mouseClicked", at = @At("HEAD"))
@@ -71,12 +68,9 @@ public abstract class HandledScreenMixin {
         boolean startedRightDrag = !this.bundleupgrade$wasCursorDragging
                 && this.cursorDragging
                 && this.heldButtonCode == GLFW.GLFW_MOUSE_BUTTON_RIGHT;
-        ItemStack cursorStack = this.handler.getCursorStack();
-        if (startedRightDrag && bundleupgrade$isBundle(cursorStack)) {
-            Slot startSlot = this.getSlotAt(mouseX, mouseY);
+        if (startedRightDrag && bundleupgrade$hasContents(this.handler.getCursorStack())) {
             this.bundleupgrade$bundleDragArmed = true;
-            this.bundleupgrade$bundleDragStartSlot = startSlot;
-            this.bundleupgrade$extractMode = startSlot == null || !startSlot.hasStack();
+            this.bundleupgrade$bundleDragStartSlot = this.getSlotAt(mouseX, mouseY);
             this.bundleupgrade$bundleDragSlots.clear();
         } else if (!this.cursorDragging) {
             this.bundleupgrade$resetBundleDrag();
@@ -88,10 +82,9 @@ public abstract class HandledScreenMixin {
         if (!this.bundleupgrade$bundleDragArmed) {
             return;
         }
-        ItemStack cursorStack = this.handler.getCursorStack();
         if (!this.cursorDragging
                 || button != GLFW.GLFW_MOUSE_BUTTON_RIGHT
-                || !bundleupgrade$isBundle(cursorStack)) {
+                || !bundleupgrade$isBundle(this.handler.getCursorStack())) {
             this.bundleupgrade$resetBundleDrag();
             return;
         }
@@ -99,9 +92,9 @@ public abstract class HandledScreenMixin {
         Slot startSlot = this.bundleupgrade$bundleDragStartSlot;
         this.bundleupgrade$bundleDragStartSlot = null;
         if (startSlot != null) {
-            this.bundleupgrade$interactWithSlot(startSlot);
+            this.bundleupgrade$placeOneStack(startSlot);
         }
-        this.bundleupgrade$interactWithSlot(this.getSlotAt(mouseX, mouseY));
+        this.bundleupgrade$placeOneStack(this.getSlotAt(mouseX, mouseY));
 
         this.cursorDragSlots.clear();
         cir.setReturnValue(true);
@@ -112,11 +105,11 @@ public abstract class HandledScreenMixin {
         if (!this.bundleupgrade$bundleDragArmed) {
             return;
         }
-        boolean handledAny = !this.bundleupgrade$bundleDragSlots.isEmpty();
+        boolean placedAny = !this.bundleupgrade$bundleDragSlots.isEmpty();
         boolean sameButton = button == this.heldButtonCode;
         this.bundleupgrade$resetBundleDrag();
 
-        if (handledAny && sameButton) {
+        if (placedAny && sameButton) {
             this.cursorDragging = false;
             this.cursorDragSlots.clear();
             cir.setReturnValue(true);
@@ -124,27 +117,19 @@ public abstract class HandledScreenMixin {
     }
 
     @Unique
-    private void bundleupgrade$interactWithSlot(@Nullable Slot slot) {
-        if (slot == null || this.bundleupgrade$bundleDragSlots.contains(slot)) {
+    private void bundleupgrade$placeOneStack(@Nullable Slot slot) {
+        if (slot == null || slot.hasStack() || this.bundleupgrade$bundleDragSlots.contains(slot)) {
             return;
         }
         ItemStack bundle = this.handler.getCursorStack();
-        if (!bundleupgrade$isBundle(bundle)) {
+        BundleContentsComponent contents = bundle.get(DataComponentTypes.BUNDLE_CONTENTS);
+        if (contents == null || contents.isEmpty()) {
             return;
         }
-
-        if (this.bundleupgrade$extractMode) {
-            BundleContentsComponent contents = bundle.get(DataComponentTypes.BUNDLE_CONTENTS);
-            if (slot.hasStack() || contents == null || contents.isEmpty()) {
-                return;
-            }
-            if (!this.handler.canInsertIntoSlot(slot)) {
-                return;
-            }
-        } else {
-            if (!slot.hasStack() || !slot.getStack().getItem().canBeNested()) {
-                return;
-            }
+        int selected = contents.getSelectedStackIndex();
+        ItemStack next = selected >= 0 && selected < contents.size() ? contents.get(selected) : contents.get(0);
+        if (!slot.canInsert(next) || !this.handler.canInsertIntoSlot(slot)) {
+            return;
         }
 
         this.bundleupgrade$bundleDragSlots.add(slot);
@@ -161,5 +146,14 @@ public abstract class HandledScreenMixin {
     @Unique
     private static boolean bundleupgrade$isBundle(ItemStack stack) {
         return !stack.isEmpty() && stack.getItem() instanceof BundleItem && stack.contains(DataComponentTypes.BUNDLE_CONTENTS);
+    }
+
+    @Unique
+    private static boolean bundleupgrade$hasContents(ItemStack stack) {
+        if (!bundleupgrade$isBundle(stack)) {
+            return false;
+        }
+        BundleContentsComponent contents = stack.get(DataComponentTypes.BUNDLE_CONTENTS);
+        return contents != null && !contents.isEmpty();
     }
 }
