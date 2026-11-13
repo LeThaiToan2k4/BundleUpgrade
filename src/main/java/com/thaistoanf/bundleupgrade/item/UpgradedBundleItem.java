@@ -1,9 +1,14 @@
 package com.thaistoanf.bundleupgrade.item;
 
 import com.thaistoanf.bundleupgrade.mixin.BundleItemInvoker;
+import com.thaistoanf.bundleupgrade.util.BundleCapacityContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.StackReference;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.ClickType;
 import net.minecraft.util.math.MathHelper;
 
 public class UpgradedBundleItem extends BundleItem {
@@ -19,6 +24,26 @@ public class UpgradedBundleItem extends BundleItem {
 
     public int getMaxCapacity() {
         return this.maxCapacity;
+    }
+
+    @Override
+    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+        BundleCapacityContext.push(stack);
+        try {
+            return super.onStackClicked(stack, slot, clickType, player);
+        } finally {
+            BundleCapacityContext.pop();
+        }
+    }
+
+    @Override
+    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+        BundleCapacityContext.push(stack);
+        try {
+            return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
+        } finally {
+            BundleCapacityContext.pop();
+        }
     }
 
     @Override

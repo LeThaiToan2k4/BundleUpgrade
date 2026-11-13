@@ -6,7 +6,8 @@
   "client": [
     "BundleTooltipComponentMixin",
     "BundleItemClientMixin",
-    "BundleTooltipDataMixin"
+    "BundleTooltipDataMixin",
+    "HandledScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

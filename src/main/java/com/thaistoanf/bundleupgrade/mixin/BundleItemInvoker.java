@@ -11,5 +11,9 @@ public interface BundleItemInvoker {
     static int bundleupgrade$getBundleOccupancy(ItemStack stack) {
         throw new AssertionError();
     }
-}
 
+    @Invoker("getItemOccupancy")
+    static int bundleupgrade$getItemOccupancy(ItemStack stack) {
+        throw new AssertionError();
+    }
+}

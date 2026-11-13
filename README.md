@@ -10,27 +10,33 @@
 
   <p>
     <a href="../../actions"><img src="https://img.shields.io/badge/BUILD-PASSING-brightgreen?style=for-the-badge" alt="Build Status"/></a>
-    <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.0-blueviolet?style=for-the-badge" alt="Release"/></a>
+    <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.1-blueviolet?style=for-the-badge" alt="Release"/></a>
     <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.20.4-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.20.4"/></a>
     <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.20.1-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
     <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-17-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 17"/></a>
   </p>
 
   <p>
-    <a href="#-tài-liệu-tiếng-việt"><img src="https://img.shields.io/badge/%F0%9F%87%BB%F0%9F%87%B3%20XEM%20H%C6%AF%E1%BB%9ANG%20D%E1%BA%A2N-TI%E1%BA%BENG%20VI%E1%BB%86T-red?style=for-the-badge" alt="Tiếng Việt"/></a>
-    <a href="#-english-documentation"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20READ%20DOCS-ENGLISH-blue?style=for-the-badge" alt="English Documentation"/></a>
-    <a href="../../releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20T%E1%BA%A2I%20MOD-DOWNLOAD%20JAR-success?style=for-the-badge" alt="Download Mod"/></a>
-    <a href="https://github.com/thaistoanf"><img src="https://img.shields.io/badge/%F0%9F%91%A4%20AUTHOR-THAISTOANF-informational?style=for-the-badge" alt="Author"/></a>
+    <a href="#tài-liệu-tiếng-việt"><img src="https://img.shields.io/badge/XEM%20H%C6%AF%E1%BB%9ANG%20D%E1%BA%A2N-TI%E1%BA%BENG%20VI%E1%BB%86T-red?style=for-the-badge" alt="Tiếng Việt"/></a>
+    <a href="#english-documentation"><img src="https://img.shields.io/badge/READ%20DOCS-ENGLISH-blue?style=for-the-badge" alt="English Documentation"/></a>
+    <a href="../../releases/latest"><img src="https://img.shields.io/badge/T%E1%BA%A2I%20MOD-DOWNLOAD%20JAR-success?style=for-the-badge" alt="Download Mod"/></a>
+    <a href="https://github.com/thaistoanf"><img src="https://img.shields.io/badge/AUTHOR-THAISTOANF-informational?style=for-the-badge" alt="Author"/></a>
   </p>
 </div>
 
 ---
 
-## 🇻🇳 Tài Liệu Tiếng Việt
+## Tài Liệu Tiếng Việt
 
 ### Giới Thiệu
 
-**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.20.4. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng ➔ Sắt ➔ Vàng ➔ Ngọc Lục Bảo ➔ Kim Cương**.
+**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.20.4. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
+
+| Thông tin                      | Giá trị                               |
+| :----------------------------- | :------------------------------------ |
+| **Phiên bản mod hiện tại**     | `1.0.1`                               |
+| **Phiên bản Minecraft hỗ trợ** | `1.20.4`                              |
+| **Mod Loader**                 | Fabric Loader `0.20.1+` và Fabric API |
 
 > [!IMPORTANT]
 > **Giữ nguyên 100% vật phẩm khi nâng cấp:** Khi đưa túi Bundle đang chứa đầy vật phẩm vào Bàn Chế Tạo (Crafting Table) cùng nguyên liệu nâng cấp, chiếc túi mới tạo ra sẽ giữ nguyên toàn bộ vật phẩm bên trong cũng như tên tùy chỉnh (Custom Name từ Đe). Bạn không bao giờ phải đổ đồ ra ngoài khi nâng cấp!
@@ -54,11 +60,15 @@ Tất cả công thức đều thực hiện trên **Bàn Chế Tạo 3x3**: Đ�
 
 ### Hướng Dẫn Sử Dụng & Cơ Chế Hoạt Động
 
-#### 1. Thao Tác Cất & Lấy Đồ (Giữ Nguyên Thao Tác 1.20.4 Vanilla)
+#### 1. Thao Tác Cất & Lấy Đồ (Chuẩn Vanilla 1.20.4)
 
-- **Cất vật phẩm vào túi:** Cầm vật phẩm trên con trỏ chuột và nhấn chuột phải vào túi Bundle, hoặc cầm túi Bundle rồi quét chuột phải qua các ô vật phẩm trong hòm đồ.
-- **Lấy vật phẩm ra:** Nhấp chuột phải vào túi để lấy món đồ được chọn ra ngoài.
-- **Chọn món đồ cần lấy (Scroll Wheel Selection):** Khi rê chuột vào túi Bundle có nhiều loại đồ khác nhau, hãy **lăn con lăn chuột (Scroll Wheel)** để cuộn và chọn chính xác món đồ bạn muốn lấy ra trước.
+| Thao tác                                    | Cách thực hiện                                                                                                                                         |
+| :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Cất vật phẩm (Chuột phải)**               | Cầm vật phẩm trên con trỏ rồi **nhấp chuột phải** vào túi Bundle, hoặc cầm túi Bundle trên con trỏ rồi **nhấp/kéo chuột phải** qua các ô chứa vật phẩm. |
+| **Lấy vật phẩm ra (Chuột phải)**            | Để trống con trỏ và **nhấp chuột phải** vào túi Bundle để lấy 1 stack đầu tiên ra ngoài.                                                               |
+| **Đặt vào ô trống (Chuột phải)**            | Cầm túi Bundle trên con trỏ và **nhấp chuột phải** vào một ô trống để đặt 1 stack từ túi vào ô đó.                                                     |
+| **Rải đồ ra nhiều ô (Giữ chuột phải + kéo)** | Cầm túi Bundle trên con trỏ, **giữ chuột phải và kéo** qua các ô trống: mỗi ô trống đi qua sẽ nhận 1 stack từ túi.                                     |
+| **Đổ đồ ra thế giới (Chuột phải ngoài hòm đồ)** | Cầm túi trên tay và **nhấp chuột phải** để thả toàn bộ các stack bên trong ra thế giới.                                                            |
 
 #### 2. Quy Tắc Trọng Lượng (Hệ Thống Base-64)
 
@@ -70,9 +80,13 @@ Sức chứa của Bundle tính theo đơn vị trọng lượng chuẩn:
   > [!TIP]
   > Nhờ các bậc túi nâng cấp mở rộng từ **74 đến 214 đơn vị**, bạn hoàn toàn có thể bỏ cả 1 cây kiếm hay 1 chiếc cúp (64 đơn vị) vào trong túi mà vẫn còn thừa từ 10 đến 150 đơn vị cho các vật phẩm khác!
 
-#### 3. Thanh Hiển Thị & Chú Giải (UI & Tooltip)
+#### 3. Tự Động Chia Stack Trong NBT (Từ 1.0.1)
 
-- **Thanh đo độ đầy (Fullness Bar):** Thanh hiển thị dưới đáy biểu tượng túi co giãn tỉ lệ chính xác `Số lượng hiện tại / Sức chứa tối đa của bậc`, chuyển từ màu xanh nhạt sang màu vàng và đỏ khi đầy.
+Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundle Kim Cương), túi sẽ tự động chia thành nhiều stack chuẩn (`64 + 64 + 64 + 8`) trong danh sách NBT `"Items"` thay vì gộp thành 1 stack vượt quá 64. Mỗi lần lấy ra luôn chỉ nhận tối đa 1 stack chuẩn.
+
+#### 4. Thanh Hiển Thị & Chú Giải (UI & Tooltip)
+
+- **Thanh đo độ đầy (Fullness Bar):** Thanh hiển thị dưới đáy biểu tượng túi co giãn tỉ lệ chính xác `Số lượng hiện tại / Sức chứa tối đa của bậc`, chuyển sang màu đỏ khi đầy.
 - **Tooltip thông minh:** Hiển thị trực quan trạng thái túi dưới dạng văn bản `Hiện có / Tối đa` (Ví dụ: `64 / 74`, `180 / 214`...).
 
 ---
@@ -84,7 +98,8 @@ Sức chứa của Bundle tính theo đơn vị trọng lượng chuẩn:
 1. Cài đặt **Minecraft 1.20.4**.
 2. Cài đặt **Fabric Loader 0.20.1** trở lên.
 3. Tải **Fabric API** phù hợp với phiên bản 1.20.4.
-4. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
+4. Trong Minecraft 1.20.4, túi Bundle mặc định nằm trong mục **Experiments**: hãy bật **Bundle** khi tạo thế giới mới.
+5. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
 
 #### Tự Biên Dịch Từ Mã Nguồn (Build from Source)
 
@@ -96,10 +111,10 @@ git clone https://github.com/thaistoanf/Bundle-Upgrade.git
 cd Bundle-Upgrade
 
 # Biên dịch bằng Gradle Wrapper
-./gradlew build
+./gradlew clean build
 ```
 
-File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-1.0.0.jar`.
+File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.20.4-1.0.1.jar`.
 
 ---
 
@@ -107,7 +122,13 @@ File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/li
 
 ### Overview
 
-**Bundle Upgrade** expands the storage capabilities of Minecraft 1.20.4 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper ➔ Iron ➔ Gold ➔ Emerald ➔ Diamond**.
+**Bundle Upgrade** expands the storage capabilities of Minecraft 1.20.4 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
+
+| Info                             | Value                                   |
+| :------------------------------- | :-------------------------------------- |
+| **Current mod version**          | `1.0.1`                                 |
+| **Supported Minecraft versions** | `1.20.4`                                |
+| **Mod loader**                   | Fabric Loader `0.20.1+` with Fabric API |
 
 > [!IMPORTANT]
 > **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents and custom anvil names directly to the newly crafted tier. You never have to empty your bundle before upgrading!
@@ -131,15 +152,19 @@ All recipes use a **3x3 Crafting Table**: Place the **previous tier bundle in ce
 
 ### How to Use & Mechanics
 
-#### 1. Item Insertion & Extraction (Vanilla 1.20.4 Interactions)
+#### 1. Controls (Vanilla 1.20.4 Bundle Mechanics)
 
-- **Inserting Items:** Pick up items with your cursor and right-click them into the bundle, or pick up the bundle and right-click across inventory slots.
-- **Extracting Items:** Right-click the bundle to retrieve the highlighted item.
-- **Scroll Wheel Selection:** Hover over a bundle containing multiple items and use your **mouse scroll wheel** to cycle through stored items and pick the exact one to withdraw.
+| Action                                     | How                                                                                                                                             |
+| :----------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Insert (Right-Click)**                   | Hold an item on your cursor and **right-click** the bundle, or hold the bundle on your cursor and **right-click / drag** across item slots.    |
+| **Extract (Right-Click)**                  | With an empty cursor, **right-click** the bundle to take out one stack.                                                                         |
+| **Place into an empty slot (Right-Click)** | Hold the bundle on your cursor and **right-click** an empty slot to place one stack from the bundle into it.                                   |
+| **Distribute (Right-Click & Drag)**        | Hold the bundle on your cursor, then **hold right-click and drag** across empty slots: each empty slot receives one stack from the bundle.     |
+| **Empty into the world (Use)**             | Hold the bundle in your hand and **right-click** in the world to drop all stored stacks at once.                                                |
 
 #### 2. Capacity Weight Rules (Base-64 Unit System)
 
-Occupancy is calculated using standard base-64 fractions:
+Occupancy is calculated using standard base-64 weights:
 
 - **Stack size 64 items** (building blocks, minerals, seeds...): **1 unit / item** (`1/64` weight).
 - **Stack size 16 items** (ender pearls, snowballs, empty buckets...): **4 units / item** (`4/64` weight).
@@ -147,7 +172,11 @@ Occupancy is calculated using standard base-64 fractions:
   > [!TIP]
   > Since upgraded bundles feature capacities from **74 to 214 units**, you can store unstackable gear (such as a sword or pickaxe, taking 64 units) while still having 10 to 150 units of remaining space for other items!
 
-#### 3. Fullness Bar & Dynamic Tooltips
+#### 3. Automatic NBT Stack Splitting (Since 1.0.1)
+
+When you store more than 64 identical items (for example 200 stone in a Diamond Bundle), the bundle automatically splits them across multiple standard stacks (`64 + 64 + 64 + 8`) inside its `"Items"` NBT list instead of merging into a single oversized stack. Every extraction returns at most one standard stack (`<= 64`).
+
+#### 4. Fullness Bar & Dynamic Tooltips
 
 - **Item Fullness Bar:** The gauge below the bundle item dynamically scales to `currentUnits / maxCapacity` of that tier without overflow or visual glitches.
 - **Informative Tooltips:** Displays exact occupancy numbers in `Current / Max` format (e.g., `64 / 74`, `180 / 214`...).
@@ -161,8 +190,8 @@ Occupancy is calculated using standard base-64 fractions:
 1. Install **Minecraft 1.20.4**.
 2. Install **Fabric Loader 0.20.1** or newer.
 3. Install the matching **Fabric API** for 1.20.4.
-4. In Minecraft 1.20.4 the vanilla Bundle is an experimental feature: enable the **Bundle** experiment when creating the world.
-4. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
+4. In Minecraft 1.20.4, the vanilla Bundle is an experimental feature: enable the **Bundle** experiment when creating a world.
+5. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
 
 #### Compiling from Source
 
@@ -174,16 +203,16 @@ git clone https://github.com/thaistoanf/Bundle-Upgrade.git
 cd Bundle-Upgrade
 
 # Compile using Gradle Wrapper
-./gradlew build
+./gradlew clean build
 ```
 
-The output JAR file will be located at `build/libs/bundleupgrade-1.0.0.jar`.
+The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.20.4-1.0.1.jar`.
 
 ---
 
 <div align="center">
   <p>Developed by <strong>thaistoanf</strong></p>
   <p>
-    <a href="#top"><img src="https://img.shields.io/badge/%E2%AC%86%EF%B8%8F%20BACK%20TO%20TOP%20%2F%20L%C3%8AN%20%C4%90%E1%BA%A6U%20TRANG-informational?style=for-the-badge" alt="Back to Top"/></a>
+    <a href="#top"><img src="https://img.shields.io/badge/BACK%20TO%20TOP%20%2F%20L%C3%8AN%20%C4%90%E1%BA%A6U%20TRANG-informational?style=for-the-badge" alt="Back to Top"/></a>
   </p>
 </div>
