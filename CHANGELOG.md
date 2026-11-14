@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] (Minecraft 1.21.4 - Fabric)
+## [1.0.0] (Minecraft 1.21.5 - Fabric)
 
 ### Fixed
 
@@ -10,16 +10,16 @@
 
 ### Changed
 
-- Upgraded **Bundle Upgrade** to Minecraft `1.21.4` (`yarn_mappings=1.21.4+build.8`, `fabric-api=0.119.4+1.21.4`, `fabric-loader=0.20.1`) on Java 21.
+- Upgraded **Bundle Upgrade** to Minecraft `1.21.5` (`yarn_mappings=1.21.5+build.1`, `fabric-api=0.128.2+1.21.5`, `fabric-loader=0.20.1`) on Java 21.
 - Adopted Minecraft 1.21.2+ ("Bundles of Bravery") bundle mechanics and rendering:
   - Left-click to insert items and Right-click to extract one stack (the stack selected via the mouse scroll wheel in the tooltip, or the first stack).
   - Holding Right-Click while dragging a bundle across empty inventory slots places 1 extracted stack (`<= 64`) into each empty slot.
   - Added open front (`*_bundle_open_front`) and open back (`*_bundle_open_back`) models and textures for all 5 upgraded bundle tiers, and registered them in `#minecraft:bundles`.
   - Updated `Item.Settings` registration with `.registryKey(...)` and updated shaped recipe ingredient keys to the 1.21.2+ string format.
-- Migrated to Minecraft 1.21.4 bundle item registration and client item model definitions:
+- Migrated to Minecraft 1.21.4+ bundle item registration and client item model definitions:
   - Updated `UpgradedBundleItem` and `ModItems` to use the single-argument `BundleItem(Item.Settings)` constructor.
   - Added data-driven client item model definitions (`assets/bundleupgrade/items/*_bundle.json`) using `minecraft:display_context` (`gui`), `minecraft:bundle/has_selected_item`, and `minecraft:bundle/selected_item`, and updated open models to use `minecraft:item/template_bundle_open_front` and `minecraft:item/template_bundle_open_back` parent models.
-- Standardized output artifact naming to `bundleupgrade-fabric-1.21.4-1.0.0.jar`.
+- Standardized output artifact naming to `bundleupgrade-fabric-1.21.5-1.0.0.jar`.
 
 ### Features
 
