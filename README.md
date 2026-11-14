@@ -4,14 +4,14 @@
 # Bundle Upgrade
 
   <p>
-    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.21.8</strong><br/>
-    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.21.8</em>
+    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.21.9</strong><br/>
+    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.21.9</em>
   </p>
 
   <p>
     <a href="../../actions"><img src="https://img.shields.io/badge/BUILD-PASSING-brightgreen?style=for-the-badge" alt="Build Status"/></a>
     <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.0-blueviolet?style=for-the-badge" alt="Release"/></a>
-    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.21.8-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.21.8"/></a>
+    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.21.9-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.21.9"/></a>
     <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.20.1-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
     <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21"/></a>
   </p>
@@ -30,12 +30,12 @@
 
 ### Giới Thiệu
 
-**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.21.8. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
+**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.21.9. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
 
 | Thông tin                      | Giá trị                               |
 | :----------------------------- | :------------------------------------ |
 | **Phiên bản mod hiện tại**     | `1.0.0`                               |
-| **Phiên bản Minecraft hỗ trợ** | `1.21.8`                              |
+| **Phiên bản Minecraft hỗ trợ** | `1.21.9`                              |
 | **Mod Loader**                 | Fabric Loader `0.20.1+` và Fabric API |
 | **Yêu cầu Java**               | Java 21 (`JDK 21`)                    |
 
@@ -97,9 +97,9 @@ Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundl
 
 #### Cài Đặt Để Chơi Game
 
-1. Cài đặt **Minecraft 1.21.8**.
+1. Cài đặt **Minecraft 1.21.9**.
 2. Cài đặt **Fabric Loader 0.20.1** trở lên.
-3. Tải **Fabric API** phù hợp với phiên bản 1.21.8.
+3. Tải **Fabric API** phù hợp với phiên bản 1.21.9.
 4. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
 
 #### Tự Biên Dịch Từ Mã Nguồn (Build from Source)
@@ -115,7 +115,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.21.8-1.0.0.jar`.
+File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.21.9-1.0.0.jar`.
 
 ---
 
@@ -123,12 +123,12 @@ File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/li
 
 ### Overview
 
-**Bundle Upgrade** expands the storage capabilities of Minecraft 1.21.8 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
+**Bundle Upgrade** expands the storage capabilities of Minecraft 1.21.9 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
 
 | Info                             | Value                                   |
 | :------------------------------- | :-------------------------------------- |
 | **Current mod version**          | `1.0.0`                                 |
-| **Supported Minecraft versions** | `1.21.8`                                |
+| **Supported Minecraft versions** | `1.21.9`                                |
 | **Mod loader**                   | Fabric Loader `0.20.1+` with Fabric API |
 | **Java requirement**             | Java 21 (`JDK 21`)                      |
 
@@ -190,9 +190,9 @@ When you store more than 64 identical items (for example 200 stone in a Diamond 
 
 #### Playing the Mod
 
-1. Install **Minecraft 1.21.8**.
+1. Install **Minecraft 1.21.9**.
 2. Install **Fabric Loader 0.20.1** or newer.
-3. Install the matching **Fabric API** for 1.21.8.
+3. Install the matching **Fabric API** for 1.21.9.
 4. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
 
 #### Compiling from Source
@@ -208,7 +208,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.21.8-1.0.0.jar`.
+The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.21.9-1.0.0.jar`.
 
 ---
 

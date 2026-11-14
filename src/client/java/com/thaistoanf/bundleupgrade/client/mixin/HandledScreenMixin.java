@@ -2,7 +2,9 @@ package com.thaistoanf.bundleupgrade.client.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.BundleItem;
@@ -11,7 +13,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -59,18 +60,18 @@ public abstract class HandledScreenMixin {
     private @Nullable Slot bundleupgrade$bundleDragStartSlot;
 
     @Inject(method = "mouseClicked", at = @At("HEAD"))
-    private void bundleupgrade$beforeMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+    private void bundleupgrade$beforeMouseClicked(Click click, boolean doubled, CallbackInfoReturnable<Boolean> cir) {
         this.bundleupgrade$wasCursorDragging = this.cursorDragging;
     }
 
     @Inject(method = "mouseClicked", at = @At("RETURN"))
-    private void bundleupgrade$afterMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+    private void bundleupgrade$afterMouseClicked(Click click, boolean doubled, CallbackInfoReturnable<Boolean> cir) {
         boolean startedRightDrag = !this.bundleupgrade$wasCursorDragging
                 && this.cursorDragging
-                && this.heldButtonCode == GLFW.GLFW_MOUSE_BUTTON_RIGHT;
+                && this.heldButtonCode == InputUtil.GLFW_MOUSE_BUTTON_RIGHT;
         if (startedRightDrag && bundleupgrade$hasContents(this.handler.getCursorStack())) {
             this.bundleupgrade$bundleDragArmed = true;
-            this.bundleupgrade$bundleDragStartSlot = this.getSlotAt(mouseX, mouseY);
+            this.bundleupgrade$bundleDragStartSlot = this.getSlotAt(click.x(), click.y());
             this.bundleupgrade$bundleDragSlots.clear();
         } else if (!this.cursorDragging) {
             this.bundleupgrade$resetBundleDrag();
@@ -78,12 +79,12 @@ public abstract class HandledScreenMixin {
     }
 
     @Inject(method = "mouseDragged", at = @At("HEAD"), cancellable = true)
-    private void bundleupgrade$onMouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY, CallbackInfoReturnable<Boolean> cir) {
+    private void bundleupgrade$onMouseDragged(Click click, double offsetX, double offsetY, CallbackInfoReturnable<Boolean> cir) {
         if (!this.bundleupgrade$bundleDragArmed) {
             return;
         }
         if (!this.cursorDragging
-                || button != GLFW.GLFW_MOUSE_BUTTON_RIGHT
+                || click.button() != InputUtil.GLFW_MOUSE_BUTTON_RIGHT
                 || !bundleupgrade$isBundle(this.handler.getCursorStack())) {
             this.bundleupgrade$resetBundleDrag();
             return;
@@ -94,19 +95,19 @@ public abstract class HandledScreenMixin {
         if (startSlot != null) {
             this.bundleupgrade$placeOneStack(startSlot);
         }
-        this.bundleupgrade$placeOneStack(this.getSlotAt(mouseX, mouseY));
+        this.bundleupgrade$placeOneStack(this.getSlotAt(click.x(), click.y()));
 
         this.cursorDragSlots.clear();
         cir.setReturnValue(true);
     }
 
     @Inject(method = "mouseReleased", at = @At("HEAD"), cancellable = true)
-    private void bundleupgrade$onMouseReleased(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+    private void bundleupgrade$onMouseReleased(Click click, CallbackInfoReturnable<Boolean> cir) {
         if (!this.bundleupgrade$bundleDragArmed) {
             return;
         }
         boolean placedAny = !this.bundleupgrade$bundleDragSlots.isEmpty();
-        boolean sameButton = button == this.heldButtonCode;
+        boolean sameButton = click.button() == this.heldButtonCode;
         this.bundleupgrade$resetBundleDrag();
 
         if (placedAny && sameButton) {
@@ -133,7 +134,7 @@ public abstract class HandledScreenMixin {
         }
 
         this.bundleupgrade$bundleDragSlots.add(slot);
-        this.onMouseClick(slot, slot.id, GLFW.GLFW_MOUSE_BUTTON_RIGHT, SlotActionType.PICKUP);
+        this.onMouseClick(slot, slot.id, InputUtil.GLFW_MOUSE_BUTTON_RIGHT, SlotActionType.PICKUP);
     }
 
     @Unique
