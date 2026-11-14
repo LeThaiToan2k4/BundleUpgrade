@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipData;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.math.Fraction;
@@ -28,8 +27,8 @@ public class UpgradedBundleItem extends BundleItem {
     private final int maxCapacity;
     private final int maxUseTime;
 
-    public UpgradedBundleItem(int maxCapacity, Identifier openFrontTexture, Identifier openBackTexture, Item.Settings settings) {
-        super(openFrontTexture, openBackTexture, settings);
+    public UpgradedBundleItem(int maxCapacity, Item.Settings settings) {
+        super(settings);
         this.maxCapacity = maxCapacity;
         this.maxUseTime = Math.max(VANILLA_MAX_USE_TIME, 10 + 2 * maxCapacity + 2);
     }

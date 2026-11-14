@@ -1,5 +1,5 @@
-﻿{
-  "parent": "minecraft:item/bundle",
+{
+  "parent": "minecraft:item/template_bundle_open_back",
   "textures": {
     "layer0": "bundleupgrade:item/copper_bundle_open_back"
   }

@@ -29,12 +29,7 @@ public final class ModItems {
                 .registryKey(key)
                 .maxCount(1)
                 .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        UpgradedBundleItem item = new UpgradedBundleItem(
-                capacity,
-                Identifier.of(BundleUpgrade.MOD_ID, name + "_open_front"),
-                Identifier.of(BundleUpgrade.MOD_ID, name + "_open_back"),
-                settings
-        );
+        UpgradedBundleItem item = new UpgradedBundleItem(capacity, settings);
         return Registry.register(Registries.ITEM, key, item);
     }
 
