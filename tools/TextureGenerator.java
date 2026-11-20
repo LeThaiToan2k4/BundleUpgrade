@@ -11,7 +11,7 @@ import java.util.Map;
  * <p>Run from the project root with JDK 25+ (single-file source launch, no compilation step):
  * <pre>  java tools/TextureGenerator.java</pre>
  *
- * <p>Produces, for every tier, the three sprites that the 26.1 bundle item model needs
+ * <p>Produces, for every tier, the three sprites that the 26.1.1 bundle item model needs
  * ({@code <tier>_bundle.png}, {@code <tier>_bundle_open_back.png}, {@code <tier>_bundle_open_front.png})
  * plus the 128x128 mod icon.
  */
