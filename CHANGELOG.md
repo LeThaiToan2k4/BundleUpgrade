@@ -1,11 +1,11 @@
 # Changelog
 
-## [1.0.0] (Minecraft 26.1.1 - Fabric)
+## [1.0.0] (Minecraft 26.1.2 - Fabric)
 
 ### Changed
 
-- Upgraded **Bundle Upgrade** to Minecraft `26.1.1` (`fabric-api=0.145.4+26.1.1`, `fabric-loader=0.20.1`, `loom_version=1.19.4`, Gradle `9.9.2`) on Java 25.
-- Updated mod dependencies (`fabric.mod.json` `"minecraft": "~26.1.1"`), documentation (`README.md`, `CONTRIBUTING.md`, `tools/TextureGenerator.java`), and GitHub Actions workflows (`.github/workflows/build.yml`, `.github/workflows/release.yml`) for Minecraft `26.1.1`.
+- Upgraded **Bundle Upgrade** to Minecraft `26.1.2` (`fabric-api=0.155.3+26.1.2`, `fabric-loader=0.20.1`, `loom_version=1.19.4`, Gradle `9.9.2`) on Java 25.
+- Updated mod dependencies (`fabric.mod.json` `"minecraft": "~26.1.2"`), documentation (`README.md`, `CONTRIBUTING.md`, `tools/TextureGenerator.java`), and GitHub Actions workflows (`.github/workflows/build.yml`, `.github/workflows/release.yml`) for Minecraft `26.1.2`.
 - Built on the unobfuscated Minecraft `26.1.x` toolchain:
   - Uses `net.fabricmc.fabric-loom` (`1.19.4`) without Yarn/remap configurations, standard `implementation` dependencies, Java `25`, and Mixin `compatibilityLevel` `JAVA_25`.
   - Uses official Mojang names and Fabric API `26.1.x` conventions across all common and client sources and Mixins:
@@ -15,14 +15,14 @@
     - `ShapedRecipeMixin`: adapted for `ShapedRecipe#assemble(CraftingInput)` and `CraftingInput#items()`.
     - `BundleTooltipDataMixin`, `TooltipComponentMixin`, & `BundleTooltipComponentMixin`: adapted for `BundleTooltip`, `ClientTooltipComponent#create(TooltipComponent)`, and `ClientBundleTooltip`'s static `getProgressBarFill(Fraction)`, `getProgressBarTexture(Fraction)`, and `getProgressBarFillText(Fraction)` methods with `extractImage` capacity context tracking.
     - `HandledScreenMixin`: adapted for `AbstractContainerScreen`, `MouseButtonEvent`, `InputConstants.MOUSE_BUTTON_RIGHT`, `ContainerInput.PICKUP`, `AbstractContainerMenu`, and `ItemStackTemplate`.
-- Standardized output artifact naming to `bundleupgrade-fabric-26.1.1-1.0.0.jar`.
+- Standardized output artifact naming to `bundleupgrade-fabric-26.1.2-1.0.0.jar`.
 
 ### Fixed
 
-- Resolved toolchain, compiler, and workspace warnings for Minecraft `26.1.1` and Java `25`:
+- Resolved toolchain, compiler, and workspace warnings for Minecraft `26.1.2` and Java `25`:
   - Verified zero `-Xlint:all` compiler warnings across main, client, and tool sources and zero Gradle `--warning-mode all` build warnings.
   - Removed the unused `BundleCapacityContext#getCurrentMaxCapacity()` helper and redundant `cancellable = true` flag on `ShapedRecipeMixin`.
-  - Switched nullable annotations to JSpecify (`org.jspecify.annotations.Nullable`) and aligned `.vscode/settings.json`, `CONTRIBUTING.md`, and CI workflows with Java `25` and Minecraft `26.1.1`.
+  - Switched nullable annotations to JSpecify (`org.jspecify.annotations.Nullable`) and aligned `.vscode/settings.json`, `CONTRIBUTING.md`, and CI workflows with Java `25` and Minecraft `26.1.2`.
 - Preserved automatic stack-splitting protection when storing more than 64 identical items in an upgraded bundle:
   - Identical items inside `BundleContents.Mutable` are only merged into existing partial stacks up to `stack.getMaxStackSize()` (64), and any remainder is split into separate standard-sized `ItemStack` entries (`1 <= count <= 64`).
   - Decoded `BundleContents` instances containing legacy oversized `ItemStackTemplate` entries (`count > maxStackSize`) are split into standard-sized templates in `BundleContents.<init>` before `ItemStackTemplate#create()` validation.
