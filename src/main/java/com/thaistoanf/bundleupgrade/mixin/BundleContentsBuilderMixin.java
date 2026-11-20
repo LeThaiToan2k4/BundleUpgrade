@@ -6,8 +6,8 @@ import com.thaistoanf.bundleupgrade.util.BundleCapacityContext;
 import com.thaistoanf.bundleupgrade.util.BundleStackHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.GrowableMutableContainer;
 import org.apache.commons.lang3.math.Fraction;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -21,10 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(BundleContents.Mutable.class)
-public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
-    @Shadow @Final
-    private List<ItemStack> items;
-
+public abstract class BundleContentsBuilderMixin extends GrowableMutableContainer<BundleContents> implements BundleBuilderDuck {
     @Shadow
     private Fraction weight;
 
@@ -39,8 +36,17 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
     @Unique
     private Fraction bundleupgrade$maxOccupancy = Fraction.ONE;
 
-    @Inject(method = "<init>", at = @At("RETURN"))
-    private void bundleupgrade$initMaxOccupancy(BundleContents base, CallbackInfo ci) {
+    protected BundleContentsBuilderMixin(List<ItemStack> items) {
+        super(items);
+    }
+
+    @Inject(method = "<init>(Ljava/util/List;Lorg/apache/commons/lang3/math/Fraction;I)V", at = @At("RETURN"))
+    private void bundleupgrade$initMaxOccupancy(
+            List<ItemStack> initialItems,
+            Fraction initialWeight,
+            int initialSelectedItem,
+            CallbackInfo ci
+    ) {
         Fraction ctx = BundleCapacityContext.getCurrentMaxFraction();
         if (ctx != null) {
             this.bundleupgrade$maxOccupancy = ctx;
@@ -65,7 +71,8 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
     }
 
     @Redirect(
-        method = "getMaxAmountToAdd",
+        method = {"getMaxAmountToAdd", "canInsertNewSlots"},
+        require = 2,
         at = @At(
             value = "FIELD",
             target = "Lorg/apache/commons/lang3/math/Fraction;ONE:Lorg/apache/commons/lang3/math/Fraction;"
@@ -80,6 +87,18 @@ public abstract class BundleContentsBuilderMixin implements BundleBuilderDuck {
             }
         }
         return max != null ? max : Fraction.ONE;
+    }
+
+    @Redirect(
+        method = "getWeightWithAddedItems",
+        at = @At(
+            value = "FIELD",
+            target = "Lorg/apache/commons/lang3/math/Fraction;ONE:Lorg/apache/commons/lang3/math/Fraction;"
+        )
+    )
+    private static Fraction bundleupgrade$redirectStaticMaxOccupancy() {
+        Fraction ctx = BundleCapacityContext.getCurrentMaxFraction();
+        return ctx != null ? ctx : Fraction.ONE;
     }
 
     @Inject(method = "tryInsert(Lnet/minecraft/world/item/ItemStack;)I", at = @At("HEAD"), cancellable = true)

@@ -48,6 +48,12 @@ public abstract class HandledScreenMixin {
     @Shadow
     protected abstract void slotClicked(Slot slot, int slotId, int mouseButton, ContainerInput containerInput);
 
+    // SDL3 remapped InputConstants.MOUSE_BUTTON_RIGHT to 3 in 26.3, while
+    // AbstractContainerScreen#slotClicked(Slot, int, int, ContainerInput) expects
+    // container click button indices (0 = primary, 1 = secondary).
+    @Unique
+    private static final int BUNDLEUPGRADE$CONTAINER_RIGHT_CLICK_BUTTON = 1;
+
     @Unique
     private final Set<Slot> bundleupgrade$bundleDragSlots = new HashSet<>();
 
@@ -138,7 +144,7 @@ public abstract class HandledScreenMixin {
         }
 
         this.bundleupgrade$bundleDragSlots.add(slot);
-        this.slotClicked(slot, slot.index, InputConstants.MOUSE_BUTTON_RIGHT, ContainerInput.PICKUP);
+        this.slotClicked(slot, slot.index, BUNDLEUPGRADE$CONTAINER_RIGHT_CLICK_BUTTON, ContainerInput.PICKUP);
     }
 
     @Unique
