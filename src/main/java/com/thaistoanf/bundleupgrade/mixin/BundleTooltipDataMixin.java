@@ -1,11 +1,11 @@
 package com.thaistoanf.bundleupgrade.mixin;
 
 import com.thaistoanf.bundleupgrade.duck.UpgradedBundleDataHolder;
-import net.minecraft.item.tooltip.BundleTooltipData;
+import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-@Mixin(BundleTooltipData.class)
+@Mixin(BundleTooltip.class)
 public class BundleTooltipDataMixin implements UpgradedBundleDataHolder {
     @Unique
     private int bundleupgrade$maxCapacity = 64;
@@ -20,4 +20,3 @@ public class BundleTooltipDataMixin implements UpgradedBundleDataHolder {
         this.bundleupgrade$maxCapacity = maxCapacity;
     }
 }
-

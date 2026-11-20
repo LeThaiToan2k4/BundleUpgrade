@@ -1,10 +1,10 @@
 package com.thaistoanf.bundleupgrade.mixin;
 
 import com.thaistoanf.bundleupgrade.item.UpgradedBundleItem;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
-import net.minecraft.item.BundleItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.BundleItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BundleContents;
 import org.apache.commons.lang3.math.Fraction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,15 +13,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BundleItem.class)
 public class BundleItemMixin {
-    @Inject(method = "getAmountFilled", at = @At("HEAD"), cancellable = true)
-    private static void bundleupgrade$getAmountFilled(ItemStack stack, CallbackInfoReturnable<Float> cir) {
+    @Inject(method = "getFullnessDisplay", at = @At("HEAD"), cancellable = true)
+    private static void bundleupgrade$getFullnessDisplay(ItemStack stack, CallbackInfoReturnable<Float> cir) {
         if (stack.getItem() instanceof UpgradedBundleItem upgraded) {
-            BundleContentsComponent contents = stack.get(DataComponentTypes.BUNDLE_CONTENTS);
+            BundleContents contents = stack.get(DataComponents.BUNDLE_CONTENTS);
             if (contents == null || contents.isEmpty()) {
-                cir.setReturnValue(0.0f);
+                cir.setReturnValue(0.0F);
             } else {
-                Fraction maxFraction = Fraction.getFraction(upgraded.getMaxCapacity(), 64);
-                Fraction ratio = contents.getOccupancy().divideBy(maxFraction);
+                Fraction maxFraction = upgraded.getMaxFraction();
+                Fraction ratio = UpgradedBundleItem.getWeightSafe(contents, maxFraction).divideBy(maxFraction);
                 cir.setReturnValue(ratio.floatValue());
             }
         }

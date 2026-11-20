@@ -4,16 +4,16 @@
 # Bundle Upgrade
 
   <p>
-    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 1.21.10</strong><br/>
-    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 1.21.10</em>
+    <strong>Nâng cấp sức chứa túi Bundle tuần tự cho Minecraft Fabric 26.1</strong><br/>
+    <em>Sequential Bundle Storage Upgrades for Minecraft Fabric 26.1</em>
   </p>
 
   <p>
     <a href="../../actions"><img src="https://img.shields.io/badge/BUILD-PASSING-brightgreen?style=for-the-badge" alt="Build Status"/></a>
     <a href="../../releases"><img src="https://img.shields.io/badge/RELEASE-V1.0.0-blueviolet?style=for-the-badge" alt="Release"/></a>
-    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-1.21.10-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 1.21.10"/></a>
+    <a href="https://minecraft.net/"><img src="https://img.shields.io/badge/MINECRAFT-26.1-2ea44f?style=for-the-badge&logo=mojangstudios&logoColor=white" alt="Minecraft 26.1"/></a>
     <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/FABRIC-0.20.1-dbd0b4?style=for-the-badge" alt="Fabric Loader"/></a>
-    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21"/></a>
+    <a href="https://adoptium.net/"><img src="https://img.shields.io/badge/JAVA-25-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 25"/></a>
   </p>
 
   <p>
@@ -30,14 +30,14 @@
 
 ### Giới Thiệu
 
-**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 1.21.10. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
+**Bundle Upgrade** là mod mở rộng tính năng của túi đồ Bundle trong Minecraft Fabric 26.1. Thay vì bị giới hạn ở 64 vật phẩm như túi da cơ bản, bạn có thể nâng cấp tuần tự chiếc túi của mình qua **5 bậc kim loại và đá quý**: **Đồng -> Sắt -> Vàng -> Ngọc Lục Bảo -> Kim Cương**.
 
 | Thông tin                      | Giá trị                               |
 | :----------------------------- | :------------------------------------ |
 | **Phiên bản mod hiện tại**     | `1.0.0`                               |
-| **Phiên bản Minecraft hỗ trợ** | `1.21.10`                              |
+| **Phiên bản Minecraft hỗ trợ** | `26.1`                                |
 | **Mod Loader**                 | Fabric Loader `0.20.1+` và Fabric API |
-| **Yêu cầu Java**               | Java 21 (`JDK 21`)                    |
+| **Yêu cầu Java**               | Java 25 (`JDK 25`)                    |
 
 > [!IMPORTANT]
 > **Giữ nguyên 100% vật phẩm khi nâng cấp:** Khi đưa túi Bundle đang chứa đầy vật phẩm vào Bàn Chế Tạo (Crafting Table) cùng nguyên liệu nâng cấp, chiếc túi mới tạo ra sẽ giữ nguyên toàn bộ vật phẩm bên trong (`BUNDLE_CONTENTS`) cũng như tên tùy chỉnh (`CUSTOM_NAME` từ Đe). Bạn không bao giờ phải đổ đồ ra ngoài khi nâng cấp!
@@ -61,7 +61,7 @@ Tất cả công thức đều thực hiện trên **Bàn Chế Tạo 3x3**: Đ�
 
 ### Hướng Dẫn Sử Dụng & Cơ Chế Hoạt Động
 
-#### 1. Thao Tác Cất & Lấy Đồ (Chuẩn Vanilla 1.21.2+)
+#### 1. Thao Tác Cất & Lấy Đồ (Chuẩn Vanilla)
 
 | Thao tác                                               | Cách thực hiện                                                                                                                                   |
 | :----------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -84,7 +84,7 @@ Sức chứa của Bundle tính theo đơn vị trọng lượng chuẩn:
 
 #### 3. Tự Động Chia Stack
 
-Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundle Kim Cương), túi sẽ tự động chia thành nhiều stack chuẩn (`64 + 64 + 64 + 8`) trong `BundleContentsComponent` thay vì gộp thành 1 stack vượt quá giới hạn codec. Mỗi lần lấy ra luôn chỉ nhận tối đa 1 stack chuẩn.
+Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundle Kim Cương), túi sẽ tự động chia thành nhiều stack chuẩn (`64 + 64 + 64 + 8`) trong `BundleContents` thay vì gộp thành 1 stack vượt quá giới hạn codec. Mỗi lần lấy ra luôn chỉ nhận tối đa 1 stack chuẩn.
 
 #### 4. Thanh Hiển Thị & Chú Giải (UI & Tooltip)
 
@@ -97,14 +97,14 @@ Khi cất hơn 64 vật phẩm giống nhau (ví dụ 200 khối đá vào Bundl
 
 #### Cài Đặt Để Chơi Game
 
-1. Cài đặt **Minecraft 1.21.10**.
+1. Cài đặt **Minecraft 26.1**.
 2. Cài đặt **Fabric Loader 0.20.1** trở lên.
-3. Tải **Fabric API** phù hợp với phiên bản 1.21.10.
+3. Tải **Fabric API** phù hợp với phiên bản 26.1 (`0.145.1+26.1` trở lên).
 4. Tải file `.jar` của mod từ [Releases](../../releases/latest) và đặt vào thư mục `.minecraft/mods`.
 
 #### Tự Biên Dịch Từ Mã Nguồn (Build from Source)
 
-Yêu cầu hệ thống đã cài đặt **Java 21 (JDK 21)**:
+Yêu cầu hệ thống đã cài đặt **Java 25 (JDK 25)**:
 
 ```bash
 # Clone dự án
@@ -115,7 +115,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-1.21.10-1.0.0.jar`.
+File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/libs/bundleupgrade-fabric-26.1-1.0.0.jar`.
 
 ---
 
@@ -123,14 +123,14 @@ File `.jar` hoàn chỉnh sau khi build thành công sẽ nằm tại: `build/li
 
 ### Overview
 
-**Bundle Upgrade** expands the storage capabilities of Minecraft 1.21.10 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
+**Bundle Upgrade** expands the storage capabilities of Minecraft 26.1 bundles. Rather than being confined to the vanilla limit of 64 items, you can upgrade your bundle sequentially across **5 tiers**: **Copper -> Iron -> Gold -> Emerald -> Diamond**.
 
 | Info                             | Value                                   |
 | :------------------------------- | :-------------------------------------- |
 | **Current mod version**          | `1.0.0`                                 |
-| **Supported Minecraft versions** | `1.21.10`                                |
+| **Supported Minecraft versions** | `26.1`                                  |
 | **Mod loader**                   | Fabric Loader `0.20.1+` with Fabric API |
-| **Java requirement**             | Java 21 (`JDK 21`)                      |
+| **Java requirement**             | Java 25 (`JDK 25`)                      |
 
 > [!IMPORTANT]
 > **100% Item Retention:** Upgrading a bundle on a Crafting Table safely transfers all stored contents (`BUNDLE_CONTENTS`) and custom anvil names (`CUSTOM_NAME`) directly to the newly crafted tier. You never have to empty your bundle before upgrading!
@@ -154,7 +154,7 @@ All recipes use a **3x3 Crafting Table**: Place the **previous tier bundle in ce
 
 ### How to Use & Mechanics
 
-#### 1. Controls (Vanilla 1.21.2+ Bundle Mechanics)
+#### 1. Controls (Vanilla Bundle Mechanics)
 
 | Action                                     | How                                                                                                                                      |
 | :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
@@ -177,7 +177,7 @@ Occupancy is calculated using standard base-64 fractions:
 
 #### 3. Automatic Stack Splitting
 
-When you store more than 64 identical items (for example 200 stone in a Diamond Bundle), the bundle automatically splits them across multiple standard stacks (`64 + 64 + 64 + 8`) inside `BundleContentsComponent` instead of merging into a single oversized stack. Every extraction returns at most one standard stack (`<= 64`).
+When you store more than 64 identical items (for example 200 stone in a Diamond Bundle), the bundle automatically splits them across multiple standard stacks (`64 + 64 + 64 + 8`) inside `BundleContents` instead of merging into a single oversized stack. Every extraction returns at most one standard stack (`<= 64`).
 
 #### 4. Fullness Bar & Dynamic Tooltips
 
@@ -190,14 +190,14 @@ When you store more than 64 identical items (for example 200 stone in a Diamond 
 
 #### Playing the Mod
 
-1. Install **Minecraft 1.21.10**.
+1. Install **Minecraft 26.1**.
 2. Install **Fabric Loader 0.20.1** or newer.
-3. Install the matching **Fabric API** for 1.21.10.
+3. Install the matching **Fabric API** for 26.1 (`0.145.1+26.1` or newer).
 4. Place the downloaded `.jar` file from [Releases](../../releases/latest) into your `.minecraft/mods` directory.
 
 #### Compiling from Source
 
-Requires **Java 21 (JDK 21)** installed on your machine:
+Requires **Java 25 (JDK 25)** installed on your machine:
 
 ```bash
 # Clone the repository
@@ -208,7 +208,7 @@ cd Bundle-Upgrade
 ./gradlew clean build
 ```
 
-The output JAR file will be located at `build/libs/bundleupgrade-fabric-1.21.10-1.0.0.jar`.
+The output JAR file will be located at `build/libs/bundleupgrade-fabric-26.1-1.0.0.jar`.
 
 ---
 

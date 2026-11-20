@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class AssetGenerator {
     private static final String[] TIERS = {"copper", "iron", "gold", "emerald", "diamond"};
@@ -18,7 +19,6 @@ public class AssetGenerator {
 
     private static void generateModels() throws IOException {
         File modelsDir = new File(ASSETS_DIR, "models/item");
-        modelsDir.mkdirs();
 
         for (String tier : TIERS) {
             String name = tier + "_bundle";
@@ -60,7 +60,6 @@ public class AssetGenerator {
 
     private static void generateItems() throws IOException {
         File itemsDir = new File(ASSETS_DIR, "items");
-        itemsDir.mkdirs();
 
         for (String tier : TIERS) {
             String name = tier + "_bundle";
@@ -111,7 +110,6 @@ public class AssetGenerator {
 
     private static void generateLang() throws IOException {
         File langDir = new File(ASSETS_DIR, "lang");
-        langDir.mkdirs();
 
         String enUs = """
         {
@@ -144,7 +142,6 @@ public class AssetGenerator {
 
     private static void generateRecipes() throws IOException {
         File recipeDir = new File(DATA_DIR, "bundleupgrade/recipe");
-        recipeDir.mkdirs();
 
         String[][] recipes = {
             {"copper_bundle", "minecraft:bundle", "minecraft:copper_ingot"},
@@ -184,7 +181,6 @@ public class AssetGenerator {
 
     private static void generateTags() throws IOException {
         File tagsDir = new File(DATA_DIR, "minecraft/tags/item");
-        tagsDir.mkdirs();
 
         String tagJson = """
         {
@@ -202,7 +198,11 @@ public class AssetGenerator {
     }
 
     private static void writeFile(File file, String content) throws IOException {
-        try (FileWriter writer = new FileWriter(file)) {
+        File parent = file.getParentFile();
+        if (parent != null && !parent.isDirectory() && !parent.mkdirs()) {
+            throw new IOException("Cannot create directory: " + parent);
+        }
+        try (FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8)) {
             writer.write(content.strip() + "\n");
         }
     }

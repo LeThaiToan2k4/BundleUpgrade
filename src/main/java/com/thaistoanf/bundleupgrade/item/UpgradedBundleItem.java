@@ -2,90 +2,102 @@ package com.thaistoanf.bundleupgrade.item;
 
 import com.thaistoanf.bundleupgrade.duck.UpgradedBundleDataHolder;
 import com.thaistoanf.bundleupgrade.util.BundleCapacityContext;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
-import net.minecraft.item.BundleItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipData;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.ClickType;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.BundleItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BundleContents;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
 
+/**
+ * A bundle with expanded storage capacity. All inventory interactions inherit vanilla
+ * {@link BundleItem} behaviour while publishing the tier capacity via {@link BundleCapacityContext}.
+ */
 public class UpgradedBundleItem extends BundleItem {
-    private static final int FULL_ITEM_BAR_COLOR = ColorHelper.fromFloats(1.0F, 1.0F, 0.33F, 0.33F);
-    private static final int ITEM_BAR_COLOR = ColorHelper.fromFloats(1.0F, 0.44F, 0.53F, 1.0F);
-    private static final int VANILLA_MAX_USE_TIME = 200;
+    private static final int FULL_BAR_COLOR = ARGB.colorFromFloat(1.0F, 1.0F, 0.33F, 0.33F);
+    private static final int BAR_COLOR = ARGB.colorFromFloat(1.0F, 0.44F, 0.53F, 1.0F);
+    private static final int VANILLA_MAX_USE_DURATION = 200;
 
     private final int maxCapacity;
-    private final int maxUseTime;
+    private final Fraction maxFraction;
+    private final int maxUseDuration;
 
-    public UpgradedBundleItem(int maxCapacity, Item.Settings settings) {
-        super(settings);
+    public UpgradedBundleItem(int maxCapacity, Item.Properties properties) {
+        super(properties);
         this.maxCapacity = maxCapacity;
-        this.maxUseTime = Math.max(VANILLA_MAX_USE_TIME, 10 + 2 * maxCapacity + 2);
+        this.maxFraction = Fraction.getFraction(maxCapacity, 64);
+        this.maxUseDuration = Math.max(VANILLA_MAX_USE_DURATION, 10 + 2 * maxCapacity + 2);
     }
 
     public int getMaxCapacity() {
         return this.maxCapacity;
     }
 
+    public Fraction getMaxFraction() {
+        return this.maxFraction;
+    }
+
+    public static Fraction getWeightSafe(BundleContents contents, Fraction fallback) {
+        return contents.weight().result().orElse(fallback);
+    }
+
     @Override
-    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+    public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
         BundleCapacityContext.push(stack);
         try {
-            return super.onStackClicked(stack, slot, clickType, player);
+            return super.overrideStackedOnOther(stack, slot, action, player);
         } finally {
             BundleCapacityContext.pop();
         }
     }
 
     @Override
-    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+    public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
         BundleCapacityContext.push(stack);
         try {
-            return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
+            return super.overrideOtherStackedOnMe(stack, other, slot, action, player, access);
         } finally {
             BundleCapacityContext.pop();
         }
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return this.maxUseTime;
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
+        return this.maxUseDuration;
     }
 
     @Override
-    public boolean isItemBarVisible(ItemStack stack) {
-        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        return bundleContentsComponent.getOccupancy().compareTo(Fraction.ZERO) > 0;
+    public boolean isBarVisible(ItemStack stack) {
+        BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        return getWeightSafe(contents, this.maxFraction).compareTo(Fraction.ZERO) > 0;
     }
 
     @Override
-    public int getItemBarStep(ItemStack stack) {
-        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        Fraction maxFraction = Fraction.getFraction(this.maxCapacity, 64);
-        Fraction ratio = bundleContentsComponent.getOccupancy().divideBy(maxFraction);
-        return Math.min(1 + MathHelper.multiplyFraction(ratio, 12), 13);
+    public int getBarWidth(ItemStack stack) {
+        BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        Fraction ratio = getWeightSafe(contents, this.maxFraction).divideBy(this.maxFraction);
+        return Math.min(1 + Mth.mulAndTruncate(ratio, 12), 13);
     }
 
     @Override
-    public int getItemBarColor(ItemStack stack) {
-        BundleContentsComponent bundleContentsComponent = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-        Fraction maxFraction = Fraction.getFraction(this.maxCapacity, 64);
-        return bundleContentsComponent.getOccupancy().compareTo(maxFraction) >= 0 ? FULL_ITEM_BAR_COLOR : ITEM_BAR_COLOR;
+    public int getBarColor(ItemStack stack) {
+        BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        return getWeightSafe(contents, this.maxFraction).compareTo(this.maxFraction) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
     }
 
     @Override
-    public Optional<TooltipData> getTooltipData(ItemStack stack) {
-        Optional<TooltipData> opt = super.getTooltipData(stack);
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        Optional<TooltipComponent> opt = super.getTooltipImage(stack);
         opt.ifPresent(data -> {
             if (data instanceof UpgradedBundleDataHolder holder) {
                 holder.bundleupgrade$setMaxCapacity(this.maxCapacity);
